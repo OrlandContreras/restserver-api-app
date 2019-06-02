@@ -1,9 +1,10 @@
+import { Response, Request, NextFunction } from "express";
 import bcrypt from 'bcrypt';
 import _ from 'underscore';
 import { User } from '../models/user';
 
 // GET: Get all users
-export const getAllUser = ( req: any, res: any ) => {
+export const getAllUser = ( req: Request, res: Response ) => {
     
     let from = req.query.from || 0;
     let limit = req.query.limit || 5;
@@ -40,7 +41,7 @@ export const getAllUser = ( req: any, res: any ) => {
 };
 
 // POST: Create user
-export const createUser = ( req: any, res: any ) => {
+export const createUser = ( req: Request, res: Response ) => {
 
     let body = req.body;
 
@@ -69,7 +70,7 @@ export const createUser = ( req: any, res: any ) => {
 }
 
 // PUT: Update User
-export const updateUser = ( req: any, res: any ) => {
+export const updateUser = ( req: Request, res: Response ) => {
 
     let id = req.params.id;
     let body = _.pick(req.body, [
@@ -105,7 +106,7 @@ export const updateUser = ( req: any, res: any ) => {
 }
 
 // DELETE: Delete user
-export const deleteUser = ( req: any, res: any ) => {
+export const deleteUser = ( req: Request, res: Response ) => {
     
     let id = req.params.id;
 

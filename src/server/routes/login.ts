@@ -114,7 +114,7 @@ export const googleSignIn = appLoginRoute.post('/google', async (req, res) => {
                     }
                 });
             } else {
-                let token =  jwt.sign({ user: userDB }, 
+                token =  jwt.sign({ user: userDB }, 
                                         seed, 
                                         { 
                                             expiresIn: Number(process.env.EXPIRES_TOKEN) 

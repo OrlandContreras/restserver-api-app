@@ -1,6 +1,6 @@
+import { Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import { IUserModel } from '../models/user';
 
 dotenv.config();
 let seed: string;
@@ -11,11 +11,10 @@ if (process.env.NODE_ENV === 'dev') {
     seed = <string>process.env.SEED_TOKEN_PROD;
 }
 
-
 // Verify Token
-export const verifyToken = ( req: any, res: any, next: any ) => {
+export const verifyToken = ( req: any, res: Response, next: NextFunction ) => {
 
-    let token = req.get('Authorization');
+    let token = <string> req.get('Authorization');
 
     jwt.verify( token, seed, (err: any, decoded: any) => {
         
@@ -35,9 +34,9 @@ export const verifyToken = ( req: any, res: any, next: any ) => {
 };
 
 // Verify Admin Role
-export const verifyAdminRole = ( req: any, res: any, next: any ) => {
-
-    let user = <IUserModel> req.user;
+export const verifyAdminRole = ( req: any, res: Response, next: NextFunction ) => {
+    
+    let user = req.user;
 
     if (user.role === 'ADMIN_ROLE') {
         next();       
