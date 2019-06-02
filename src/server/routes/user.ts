@@ -2,11 +2,12 @@ import express from "express";
 import bcrypt from 'bcrypt';
 import _ from 'underscore';
 import { User } from '../models/user';
+import { verifyToken, verifyAdminRole }  from '../middlewares/authentication';
 
 const appUserRoute = express();
 
 // GET
-appUserRoute.get('/user', ( req, res ) => {
+appUserRoute.get('/user', verifyToken, ( req, res ) => {
     
     let from = req.query.from || 0;
     let limit = req.query.limit || 5;
@@ -23,7 +24,7 @@ appUserRoute.get('/user', ( req, res ) => {
                 });
             }
 
-            User.count({ state: true }, (err, count) =>{
+            User.countDocuments({ state: true }, (err, count) =>{
                 
                 res.json({
                     ok: true,
@@ -36,7 +37,7 @@ appUserRoute.get('/user', ( req, res ) => {
 });
 
 // POST
-appUserRoute.post('/user', ( req, res ) => {
+appUserRoute.post('/user', [verifyToken, verifyAdminRole], ( req: any, res: any ) => {
 
     let body = req.body;
 
@@ -65,7 +66,7 @@ appUserRoute.post('/user', ( req, res ) => {
 });
 
 // PUT
-appUserRoute.put('/user/:id', ( req, res ) => {
+appUserRoute.put('/user/:id', [verifyToken, verifyAdminRole], ( req: any, res: any ) => {
 
     let id = req.params.id;
     let body = _.pick(req.body, [
@@ -101,7 +102,7 @@ appUserRoute.put('/user/:id', ( req, res ) => {
 });
 
 // DELETE
-appUserRoute.delete('/user/:id', ( req, res ) => {
+appUserRoute.delete('/user/:id', [verifyToken, verifyAdminRole], ( req: any, res: any ) => {
     
     let id = req.params.id;
 

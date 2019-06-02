@@ -2,13 +2,13 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import appUserRoute from './routes/user';
+import routes from './routes/index';
 
 // Working with Express()
 export const server = () => {
     const app = express();
     let urlDB: string;
-
+    
     dotenv.config();
 
     if (process.env.NODE_ENV === 'dev') {
@@ -23,17 +23,15 @@ export const server = () => {
     // parse application/json
     app.use(bodyParser.json());
 
-    // Routes
-    app.use(appUserRoute); // User
-    
-
-    
+    // Load global Routes
+    app.use(routes);
+ 
     // connect to mongoDB
     mongoose.connect(
         urlDB, 
         { 
             useNewUrlParser: true,
-            useCreateIndex: true
+            useCreateIndex: true,            
         },
         (err) => {
     
