@@ -8,6 +8,13 @@ You must be create the file .env and configure the variables of environment:
 * PORT=3000
 * DATABASE_DEV = mongodb://localhost:27017/coffee
 * DATABASE_PROD = <YOUR_PROD_DATABASE_STRING_CONNECTION>
+ 
+Expires Token 60 * 60 * 24 * 30
+* EXPIRES_TOKEN = 2592000
+
+SEED Token
+* SEED_TOKEN_DEV = secret-dev
+* SEED_TOKEN_PROD = your_secret_seed
 
 ## Database fields - Users Collection
 ```
