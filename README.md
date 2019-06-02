@@ -16,6 +16,9 @@ SEED Token
 * SEED_TOKEN_DEV = secret-dev
 * SEED_TOKEN_PROD = your_secret_seed
 
+GOOGLE CONFIG
+* CLIENT_ID = your_google_client_id
+
 ## Database fields - Users Collection
 ```
     name: string;
