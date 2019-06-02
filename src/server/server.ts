@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import path from 'path';
 import routes from './routes/index';
 
 // Working with Express()
@@ -22,6 +23,10 @@ export const server = () => {
 
     // parse application/json
     app.use(bodyParser.json());
+
+    // Enabled public folder
+    app.use(express.static(path.join(__dirname, '../../dist/public')));
+    
 
     // Load global Routes
     app.use(routes);

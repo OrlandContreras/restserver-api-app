@@ -24,7 +24,7 @@ SEED Token
     img?: string;
     role?: string;
     state?: string;
-    google?: string;
+    google?: boolean;
 ```
 
 ## API Rest

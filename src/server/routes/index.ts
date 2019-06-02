@@ -1,12 +1,13 @@
 import express from "express";
 import appUserRoute from './user';
-import appLoginRoute from './login';
+import { loginRoute } from './login';
 
 
 const routes = express();
 
 // Routes
 routes.use(appUserRoute); // User
-routes.use(appLoginRoute); // Login
+routes.use(loginRoute); // Login
+
 
 export default routes;

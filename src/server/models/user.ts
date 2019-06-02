@@ -19,7 +19,7 @@ export interface IUserModel extends Document {
     img?: string;
     role?: string;
     state?: string;
-    google?: string;
+    google?: boolean;
 }
 
 // Schema definition
